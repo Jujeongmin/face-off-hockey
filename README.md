@@ -6,7 +6,7 @@
 PC 모드와, 내 라인업 AI에게 공격·균형·수비 작전을 지시하는 폰 감독 모드가 있습니다. 선수 카드를 스카우트하고
 강화해서 라인업을 키우고, 스테이지·실시간 1:1 랭크전·친구 방에서 씁니다.
 
-**▶ 플레이: https://verse8.io/W9K9g3w** (Verse8, PC·모바일 브라우저)
+**▶ 플레이: https://verse8.io/dl/games/W9K9g3w?referral=RCNU6B** (Verse8, PC·모바일 브라우저)
 
 배포: Verse8 서비스 중 · 원스토어, YouTube Playables 출시 준비 중
 
