@@ -1,0 +1,58 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# local tools
+.claude/
+
+# Blender portrait renders: the game ships the WebP copies
+public/portraits/*.png
+public/portraits/*.webp
+!public/portraits/*_h2.webp
+!public/portraits/*_s2.webp
+!public/portraits/*_h3.webp
+!public/portraits/*_s3.webp
+
+# UI art sources (2 MB each): public/ui/*.webp are what ships
+art/ui-src/*.png
+
+# downloaded character sources (the game ships the converted GLBs)
+art-src/
+.superpowers/
+PROJECT/sfx_raw/
+
+# Unity Asset Store models: licensed for the game, not for redistribution as files (kept out of the public repo)
+public/models/cyber.glb
+public/models/jelly.glb
+public/models/mking.glb
+public/models/ganz0.glb
+public/models/ganz1.glb
+public/models/sword*.glb
+public/models/bg*.glb
+public/models/anims_cyber.glb
+public/models/anims_jelly.glb
+public/models/anims_mking.glb
+public/models/anims_ganz.glb
+public/models/anims_ida.glb
+public/models/anims_bg.glb

@@ -1,0 +1,20 @@
+Use your built-in image generation tool ($imagegen). Generate SIX separate images and copy each final image into the current working directory under these exact names: crown.png, medal_silver.png, medal_bronze.png, ped_gold.png, ped_silver.png, ped_bronze.png. Then stop. Do not write any code.
+
+What it is: the season top-3 podium on the home screen of an original ice hockey game called FACE-OFF!. The game puts each player's portrait, name and rank points above these pieces, so the art itself must hold no person and no writing.
+
+The pieces:
+1. crown.png, landscape 1024x768: a champion's crown worn by the season's number one. Polished gold band with fine engraved scrollwork, five points, the middle one tallest, each point tipped with a small pearl, a ruby set in the centre of the band and two sapphires either side. Seen from the front, slightly from above. It must read clearly at 48 pixels wide.
+2. medal_silver.png, portrait 768x1024: a struck silver medal for second place hanging from a short V of ribbon in blue and red. The medal face shows a faint emboss of crossed hockey sticks and a puck. No numbers.
+3. medal_bronze.png, portrait 768x1024: the same medal in warm bronze for third place, same ribbon, same emboss. No numbers.
+4. ped_gold.png, landscape 1024x640: the first-place step of a winners' podium. A solid block seen from the front and slightly from above so a little of the top face shows, polished gold trim along the top edge, a deep gold front panel, the faint emboss of a rink circle on the front. The block fills the image edge to edge in width.
+5. ped_silver.png, landscape 1024x480: the second-place step, the same block design in silver and cold steel, lower than the gold one.
+6. ped_bronze.png, landscape 1024x380: the third-place step, the same block design in bronze, the lowest.
+The three steps must line up side by side as one podium: identical width, identical depth, identical camera angle and lighting, only height and metal differ.
+
+Background: fully transparent outside each object. If transparency is not possible, use a perfectly flat #00FF00 background outside the object instead, with no green spill or shadow on it.
+
+Style: matches premium collectible sports cards made of real materials. Physically believable metal, sharp bevels, fine engraving, real reflections, studio lighting from the upper left. Crisp and restrained, game UI quality.
+
+Strictly avoid: any text, letters, numbers, logos, watermarks, people, faces, emoji-like icons, cartoon outlines, glowing magic swirls, random scribbled ornament, smudgy painterly texture, melted details, and the trade dress of any existing game or brand.
+
+When finished, reply with just the six file names.

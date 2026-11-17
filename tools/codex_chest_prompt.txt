@@ -1,0 +1,18 @@
+Use your built-in image generation tool ($imagegen). Generate SIX separate images and copy each final image into the current working directory under these exact names: chest_bronze.png, chest_silver.png, chest_gold.png, chest_bronze_open.png, chest_silver_open.png, chest_gold_open.png. Then stop. Do not write any code.
+
+What it is: the star reward chests on the stage map of an original ice hockey game called FACE-OFF!. A chapter has three chests that open at 10, 20 and 30 stars: a bronze one, a silver one and a gold one, each clearly richer than the one before. They sit on a progress bar and are shown small, about 40 to 56 pixels wide, so the silhouette must read at that size.
+
+The chests: a sturdy treasure chest with a domed lid, seen from the front and slightly from above, three-quarter turned a little to the left. Dark lacquered wood planks with metal bands and corners, a lock plate at the front with a small faint emboss of a hockey puck and two crossed sticks.
+1. chest_bronze.png, square 1024x1024: warm bronze bands and corners, plain dark wood, modest.
+2. chest_silver.png, square 1024x1024: polished silver bands with fine engraving, deep blue-grey wood.
+3. chest_gold.png, square 1024x1024: rich polished gold bands with engraved scrollwork, deep red lacquered wood, a small ruby on the lock plate, clearly the most valuable.
+4. chest_bronze_open.png, 5. chest_silver_open.png, 6. chest_gold_open.png: the same three chests with the lid swung open and back, the inside empty and dark (already claimed), same camera, size and lighting as the closed ones.
+All six must share one camera angle, size, position in the frame and lighting, so open and closed line up exactly.
+
+Background: fully transparent outside the chest. If transparency is not possible, use a perfectly flat #00FF00 background outside the chest instead, with no green spill or shadow on it.
+
+Style: matches premium collectible sports cards made of real materials. Physically believable metal and wood, sharp bevels, crisp highlights, studio lighting from the upper left. Crisp and restrained, game UI quality.
+
+Strictly avoid: any text, letters, numbers, logos, watermarks, people, faces, coins or jewels spilling out, emoji-like icons, cartoon outlines, glowing magic swirls, random scribbled ornament, smudgy painterly texture, melted details, and the trade dress of any existing game or brand.
+
+When finished, reply with just the six file names.

@@ -1,0 +1,25 @@
+Use your built-in image generation tool ($imagegen). Generate FIVE separate images, one per grade, and copy each final image into the current working directory as card0.png, card1.png, card2.png, card3.png, card4.png. Then stop. Do not write any code.
+
+What it is: the empty card frame for an original ice hockey game called FACE-OFF!, shown when a player card is collected. A player portrait and text are added later by the game, so the frame itself must hold no person and no writing.
+
+Layout: follow the five attached images exactly for silhouette and placement. They are rough layout guides for grades 0 to 4 in order. Keep, in the same positions and proportions:
+- the card silhouette: chamfered top corners, shallow crest at top centre, shallow chevron point at the bottom
+- a hexagonal rating socket at the top left, with a plain dark empty centre
+- a wide name plate across the bottom, with a plain dark empty centre
+- star ornaments at top centre: grade 0 a small stud, grade 1 one star, grade 2 two stars, grade 3 three stars, grade 4 five stars
+- the large middle area kept calm and uncluttered, because a character stands there
+
+Format: portrait 1024x1536, the card filling the frame edge to edge with a small margin, on a fully transparent background outside the silhouette. If transparency is not possible, use a perfectly flat #00FF00 background outside the silhouette instead.
+
+Grades, each must be clearly different in material and richness, and clearly more valuable than the one before:
+- grade 0 bronze: aged hammered copper rim, warm brown leather-like panel, simple and modest
+- grade 1 silver: brushed steel rim, cold slate blue panel with faint etched lines
+- grade 2 gold: polished gold rim with fine engraved scrollwork, deep amber panel with soft radial light
+- grade 3 epic: violet anodised metal rim with crystal insets, deep purple panel with subtle light rays
+- grade 4 legend: ornate rim of gold and iridescent foil with ruby and crystal insets, deep crimson panel with dramatic but soft light behind the centre
+
+Style: a premium collectible sports card made of real materials. Physically believable metal, sharp bevels, fine engraving, real reflections, studio lighting. Hockey motifs only as a very faint emboss in the panel: rink circle and lines. Crisp and restrained.
+
+Strictly avoid: any text, letters, numbers, logos, watermarks, people, faces, emoji-like icons, glowing magic swirls, random scribbled ornament, smudgy painterly texture, melted details, and the trade dress of any existing game or brand.
+
+All five must look like one matching set with identical geometry. When finished, reply with just the five file names.

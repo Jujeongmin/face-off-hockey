@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <title>FACE-OFF! 1v1 Hockey</title>
+  <link rel="stylesheet" href="/src/style.css" />
+  <link rel="stylesheet" href="/src/steel.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@500;700;900&family=Barlow+Condensed:ital,wght@0,700;0,800;1,800&display=swap" />
+  <!-- Verse8 iframe: report the game size to the host page -->
+  <script>
+      (function () {
+        function reportGameSize() {
+          const height = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+
+          const width = Math.max(document.body.scrollWidth, document.documentElement.scrollWidth);
+
+          window.parent.postMessage(
+            {
+              type: 'GAME_SIZE_RESPONSE',
+              height: height,
+              width: width,
+            },
+            '*',
+          );
+        }
+
+        window.addEventListener('load', reportGameSize);
+
+        window.addEventListener('resize', reportGameSize);
+
+        window.addEventListener('message', function (event) {
+          if (event.data && event.data.type === 'REQUEST_GAME_SIZE') {
+            reportGameSize();
+          }
+        });
+      })();
+    </script>
+</head>
+<body>
+  <div id="app"></div>
+
+  <!-- loading: real progress of the models, portraits and fonts -->
+  <section id="loading">
+    <div class="slash"></div><div class="slash2"></div>
+    <div class="ld-word"><span class="wordmark">FACE<i></i>OFF</span></div>
+    <div class="ld-track" aria-hidden="true"><i class="ld-fill" id="loadFill"></i></div>
+    <div class="ld-foot"><div class="ld-row"><b id="loadPct">0%</b><span id="loadWhat" data-i18n="ldPrep">링크 준비 중</span></div><p class="ld-tip" id="loadTip"></p></div>
+  </section>
+
+  <!-- the bar across the top of the home, team, enhance, market and shop screens -->
+  <nav id="gnav" class="gnav hidden">
+    <div class="g-top">
+      <span class="wordmark">FACE<i></i>OFF</span>
+      <div class="g-prof"><span class="g-ava-w"><span class="g-ava"><img id="profAva" alt="" /></span><span id="profEnh"></span></span>
+        <div class="g-who"><label class="nick-row"><input id="nick" maxlength="12" autocomplete="off" placeholder="Player" aria-label="닉네임" /><i class="edit"></i></label>
+          <div class="g-line"><span class="rk-mini" id="rankMini"></span><small id="seasonTag"></small><span id="record"></span></div></div></div>
+      <div class="spacer"></div>
+      <div class="eco-wallet"></div>
+      <div class="lang"><div id="bLang" class="lsel lang-pick"></div><button id="bMute" aria-label="sound"><img id="muteIcon" src="/kit/i_audioOn_black.png" alt="" /></button></div>
+    </div>
+    <div class="g-rail">
+      <button class="tabn" id="tabHome"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l9 8h-3v9h-4v-6h-4v6H6v-9H3z"/></svg><span data-i18n="navHome">홈</span></button>
+      <button class="tabn" id="tabStages"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 21V3h2v1.2l10.5 3.3L6 11v10z"/><circle cx="18" cy="18" r="2.4"/><circle cx="11" cy="15.5" r="1.6"/></svg><span data-i18n="navStages">스테이지</span></button>
+      <button class="tabn" id="tabTeam"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="8" cy="8" r="3.4"/><circle cx="16.5" cy="9" r="2.8"/><path d="M2 20c0-4 3-6 6-6s6 2 6 6zM13.5 20c.2-2.6-.6-4.4-1.8-5.5 1.3-.8 2.8-1 4.3-1 3 0 5.5 2 5.5 6.5z"/></svg><span data-i18n="navTeam">팀</span></button>
+      <button class="tabn" id="tabSquad"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6 6 .8-4.4 4.2 1.1 6L12 16l-5.7 3 1.1-6L3 8.8 9 8z"/></svg><span data-i18n="ecoEnhance">강화</span></button>
+      <button class="tabn" id="tabMarket"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h14l-3-3M20 16H6l3 3"/></svg><span data-i18n="ecoMarket">이적시장</span></button>
+      <button class="tabn" id="tabShop"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 8h14l-1.2 12H6.2zM8.5 8a3.5 3.5 0 017 0h-2a1.5 1.5 0 00-3 0z"/></svg><span data-i18n="ecoShop">상점</span></button>
+      <button class="tabn" id="tabRank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 4h6v16H9zM2 11h6v9H2zM16 8h6v12h-6z"/></svg><span data-i18n="navRank">랭킹</span></button>
+      <i class="g-sep"></i>
+      <button class="tabn sub" id="bZone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="6" width="18" height="12" rx="1"/><path d="M3 10h4v4H3M21 10h-4v4h4"/><ellipse cx="12" cy="12" rx="2" ry="1" fill="currentColor"/></svg><span data-i18n="practiceZone">슛 연습장</span></button>
+      <button class="tabn sub" id="bTutorial"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L1 8.5 12 14l9-4.5V16h2V8.5zM5 12.2V16c0 1.7 3.1 3.5 7 3.5s7-1.8 7-3.5v-3.8l-7 3.5z"/></svg><span data-i18n="tutorial">튜토리얼</span></button>
+      <button class="tabn sub" id="bHelp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="13" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 15h10" stroke-width="2.6" stroke-linecap="round"/></svg><span data-i18n="controls">조작법</span></button>
+    </div>
+  </nav>
+
+  <!-- title / lobby: the rink behind is live (lobby practice), tiles on the right -->
+  <section id="title" class="screen lobby">
+    <div class="slash"></div><div class="slash2"></div>
+    <img class="hero h1" id="hero1" alt="" /><img class="hero h2" id="hero2" alt="" /><img class="hero h0" id="hero0" alt="" />
+    <div class="rank" id="rankCard"></div>
+    <div class="top3 hidden" id="top3"></div>
+    <div class="hero-tag" id="heroTag"><i id="htOvr"></i><span><b id="htName"></b><small id="htRole"></small></span></div>
+    <nav class="modes" id="pcMenu">
+      <button id="bStage" class="mode stage"><span class="badge">STAGE</span><b data-i18n="stContinue">스테이지 이어하기</b><small class="st-at"></small><span class="st-prog"></span></button>
+      <button id="bQuick" class="mode ice"><span class="badge">RANKED</span><b data-i18n="quick">빠른 대전</b><small data-i18n="quickSub">상대 자동 매칭</small></button>
+      <div class="mode-list">
+        <button id="bRoom" class="mrow"><span><b data-i18n="friend">친구와 대전</b><small data-i18n="friendSub">방 코드로 초대</small></span><i class="chev" aria-hidden="true"></i></button>
+        <button id="bPractice" class="mrow"><span><b data-i18n="practice">AI 연습</b><small data-i18n="practiceSub">AI와 한 판</small></span><i class="chev" aria-hidden="true"></i></button>
+        <button id="bTeam" class="mrow team"><span><b data-i18n="team">팀 편성</b><small data-i18n="teamSub">선수 고르기</small></span><span class="peek" id="peek"></span><i class="chev" aria-hidden="true"></i></button>
+      </div>
+    </nav>
+    <div class="menu" id="mobileMenu">
+      <button id="bStageM" class="tile big stage"><b data-i18n="stContinue">스테이지 이어하기</b><small class="st-at"></small><span class="st-prog"></span></button>
+      <button id="bWatch" class="tile big"><b data-i18n="managerPlay">감독 경기</b><small data-i18n="managerSub">내 라인업에 작전을 지시해요</small></button>
+      <button id="bTeamM" class="tile team"><span><b data-i18n="team">팀 편성</b><small data-i18n="teamSub">선수 고르기</small></span><span class="peek" id="peekM"></span></button>
+      <p class="note" data-i18n="mobileNote">직접 플레이는 PC에서 할 수 있어요.</p>
+    </div>
+    <div id="bLangM" class="lsel lang-pick"></div>
+    <div class="ph-tools" id="mTools"><button id="bMuteM" aria-label="sound"><img id="muteIconM" src="/kit/i_audioOn_black.png" alt="" /></button><button id="bCreditsM" class="ghost small" data-i18n="credits">크레딧</button></div>
+  </section>
+
+  <!-- shooting practice on the live rink -->
+  <section id="zone" class="screen zone hidden">
+    <div class="practice-chip">
+      <span class="pc-tag"><span class="pc-title" data-i18n="practiceZone">슛 연습장</span><span class="pc-score" id="pcScore">0 / 0</span></span>
+      <span class="pc-keys"><span><img class="key" src="/kit/key_arrow_left.png" alt="" /><img class="key" src="/kit/key_arrow_up.png" alt="" /><img class="key" src="/kit/key_arrow_down.png" alt="" /><img class="key" src="/kit/key_arrow_right.png" alt="" /></span><span><img class="key" src="/kit/key_e.png" alt="" /> <span data-i18n="kSprintShort">질주</span></span><span><img class="key" src="/kit/key_d.png" alt="" /> <span data-i18n="kShootShort">슛</span></span></span>
+    </div>
+    <button id="bZoneBack" class="ghost small" data-i18n="lobby">로비로</button>
+  </section>
+
+  <!-- team: pick three skaters and a goalie -->
+  <section id="team" class="screen team-page hidden">
+    <div class="tm-lineup">
+      <h2 class="tm-head" data-i18n="team">팀 편성</h2>
+      <div class="bench rink" id="bench"></div>
+      <div class="tm-power"><span data-i18n="teamPower">팀 전력</span><b id="tmPowerN"></b></div>
+      <button id="bTeamDone" class="primary" data-i18n="done">완료</button>
+    </div>
+    <div class="tm-detail">
+      <img class="tm-hero" id="tmHero" alt="" />
+      <div class="tm-info"><small id="tmRole"></small><h1 id="tmName"></h1><em id="tmLv"></em></div>
+      <p class="tm-skill" id="tmSkill"></p>
+      <div class="tm-stats"><h2 class="tm-head" data-i18n="stats">능력치</h2><div id="tmStats"></div></div>
+    </div>
+    <div class="tm-pool"><h2 class="tm-head"><span data-i18n="shCard">선수 카드</span><small id="tmCount"></small></h2><div class="cards" id="cards"></div><p class="team-hint" data-i18n="lineupHint">자리를 고르고 카드를 누르세요. 같은 선수는 한 번만.</p></div>
+  </section>
+
+  <!-- squad: enhance a card -->
+  <section id="squad" class="screen panel eco hidden">
+    <div class="squad-body"><div class="squad-list"><h2 class="tm-head"><span data-i18n="shCard">선수 카드</span><small id="squadCount"></small></h2><div class="cards squad-grid" id="squadCards"></div></div><aside class="sheet forge" id="forge"></aside></div>
+  </section>
+
+  <!-- transfer market -->
+  <section id="market" class="screen panel eco hidden">
+    <div class="m-head"><div class="m-tabs"><button class="primary small" data-tab="buy" data-i18n="mkTabBuy">사기</button><button class="ghost small" data-tab="sell" data-i18n="mkTabSell">팔기</button><button class="ghost small" data-tab="mine" data-i18n="mkTabMine">내 등록</button></div><div class="m-tools" id="marketTools"></div></div>
+    <div class="m-body" id="marketBody"></div>
+  </section>
+
+  <!-- shop -->
+  <section id="shop" class="screen panel eco hidden">
+    <img class="sp-bg" src="/kit/shop_arena.webp" alt="" />
+    <div class="sp">
+      <h2 class="tm-head sp-h" data-i18n="shScout">선수 스카우트</h2>
+      <div id="shopFeature" class="pk-row"></div>
+      <p class="pk-foot" id="shopFoot"></p>
+      <div class="sp-shelf"><div id="shopPacks"></div><div class="hidden" id="shopGemsWrap"><div id="shopGems"></div></div></div>
+    </div>
+  </section>
+
+  <!-- stages -->
+  <section id="stages" class="screen panel eco hidden">
+    <div class="stg">
+      <div class="stg-head"><h2 class="tm-head" data-i18n="navStages">스테이지</h2><div class="stg-tabs" id="stgTabs"></div></div>
+      <div class="stg-body"><ol class="stg-path" id="stgPath"></ol><aside class="stg-side" id="stgSide"></aside></div>
+      <div class="stg-chest" id="stgChest"></div>
+    </div>
+  </section>
+
+  <!-- stage result -->
+  <section id="stageResult" class="screen panel stage-result hidden">
+    <div class="sr-card">
+      <small id="srTag"></small><h2 id="srTitle"></h2><p id="srName"></p>
+      <div class="sr-stars" id="srStars"></div>
+      <div class="sr-score" id="srScore"></div>
+      <ul class="stg-lines" id="srLines"></ul>
+      <p class="sr-reward" id="srReward"></p>
+      <div class="sr-btns"><button id="bStageNext" class="primary" data-i18n="stNext">다음 스테이지</button><button id="bStageRetry" class="ghost" data-i18n="stRetry">다시 하기</button><button id="bStageHome" class="ghost" data-i18n="stHome">홈으로</button></div>
+    </div>
+  </section>
+
+  <!-- season ranking -->
+  <section id="rank" class="screen panel eco hidden">
+    <div class="rk-board">
+      <h2 class="tm-head"><span data-i18n="rankTitle">시즌 랭킹</span><small id="rankSeason"></small></h2>
+      <div class="rk-cols"><span data-i18n="rankCol">순위</span><span></span><span>RP</span><span data-i18n="rankRec">전적</span></div>
+      <ol class="rk-list" id="rankList"></ol>
+      <div class="rk-me" id="rankMe"></div>
+    </div>
+  </section>
+
+  <!-- nickname -->
+  <div id="nickPanel" class="nick-panel hidden" role="dialog" aria-modal="true" aria-labelledby="nickTitle">
+    <div class="nick-sheet">
+      <h2 id="nickTitle" data-i18n="nickTitle">닉네임 설정</h2>
+      <div class="nick-card">
+        <span class="nick-ava"><img id="nickAva" alt="" /></span>
+        <div class="nick-plate"><small data-i18n="nickPreview">이렇게 보여요</small><b id="nickShow">Player</b><span class="nick-rank" id="nickRank"></span></div>
+      </div>
+      <label class="nick-field"><input id="nickNew" maxlength="12" autocomplete="off" /><i class="nick-state" id="nickState"></i></label>
+      <div class="nick-meter" id="nickMeter" aria-hidden="true"></div>
+      <p class="nick-hint"><span id="nickMsg" data-i18n="nickHint"></span> <b id="nickCount">0/12</b></p>
+      <div class="nick-btns"><button id="bNickCancel" class="ghost" data-i18n="cancel">취소</button><button id="bNickSave" class="primary" data-i18n="nickSave">저장</button></div>
+    </div>
+  </div>
+
+  <!-- friend room -->
+  <section id="room" class="screen panel hidden"><div class="sheet">
+    <h2 data-i18n="friend">친구와 대전</h2>
+    <button id="bCreate" class="primary" data-i18n="createRoom">방 만들기</button>
+    <div class="join"><input id="code" maxlength="6" placeholder="CODE" autocomplete="off" /><button id="bJoin" class="ghost" data-i18n="join">입장</button></div>
+    <button id="bRoomBack" class="ghost" data-i18n="back">뒤로</button>
+  </div></section>
+
+  <!-- waiting / connecting -->
+  <section id="wait" class="screen panel hidden"><div class="sheet">
+    <h2 id="waitTitle"></h2>
+    <div id="waitCode" class="code"></div>
+    <p id="waitMsg"></p>
+    <div class="spinner"></div>
+    <button id="bCancel" class="ghost" data-i18n="cancel">취소</button>
+  </div></section>
+
+  <!-- controls -->
+  <section id="credits" class="screen panel hidden"><div class="sheet cr-sheet"><h2 data-i18n="credits">크레딧</h2><p class="note" data-i18n="creditsNote"></p><div class="cr-list" id="creditsList"></div><button id="bCreditsBack" class="ghost" data-i18n="back">뒤로</button></div></section>
+
+  <section id="help" class="screen panel hidden">
+    <div class="guide">
+      <aside class="g-side">
+        <h2 data-i18n="controls">조작법</h2>
+        <nav class="g-list" id="guideList"></nav>
+        <button id="bHelpBack" class="ghost" data-i18n="back">뒤로</button>
+        <button id="bCredits" class="ghost small" data-i18n="credits">크레딧</button>
+      </aside>
+      <div class="g-main">
+        <video id="guideVideo" class="g-video" muted autoplay loop playsinline disablepictureinpicture disableremoteplayback></video>
+        <img id="guideImg" class="g-video hidden" alt="" />
+        <div class="g-info">
+          <div class="g-copy"><h3 id="guideTitle"></h3><p id="guideText"></p></div>
+          <div class="g-keys" id="guideKeys"></div>
+        </div>
+        <div class="g-nav"><button id="guidePrev" class="ghost small" data-i18n="prev">이전</button><span id="guideStep"></span><button id="guideNext" class="primary small" data-i18n="next">다음</button></div>
+        <p class="note g-note" data-i18n="soNote"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HUD: broadcast scorebug, lower third, centre flash -->
+  <div id="hud" class="hidden">
+    <div id="board" class="score">
+      <span class="sc-team t0"><i class="dot"></i><span class="tm" id="n0">BLU</span></span><b class="sc-num s0" id="s0">0</b>
+      <span class="sc-clock" id="clock">1P 1:00</span>
+      <b class="sc-num s1" id="s1">0</b><span class="sc-team t1"><span class="tm" id="n1">RED</span><i class="dot"></i></span>
+    </div>
+    <div id="so" class="hidden"></div>
+    <div id="hitFlash"></div>
+    <div id="banner"></div>
+    <div id="lt" class="pop"><div class="pop-main" id="ltMain"></div><div class="pop-sub" id="ltSub"></div></div>
+    <div id="charge"><i></i></div>
+    <div id="ping"></div>
+    <div id="hint" data-i18n="hint"></div>
+    <div id="chat" class="chat hidden"><div id="chatLog" class="chat-log"></div><input id="chatIn" class="chat-in hidden" maxlength="60" autocomplete="off" spellcheck="false" /><div class="chat-bar"><span id="chatKey" class="chat-key" data-i18n="chatKey">Enter 채팅</span><button id="chatMute" class="chat-mute" type="button"></button></div></div>
+    <div id="skill" class="sk hidden"><span class="sk-fill" id="skFill"></span><i class="sk-keys" id="skKeys"></i><b id="skName"></b><u id="skCd"></u></div>
+    <div id="offer" class="offer hidden"><img class="key" src="/kit/key_f.png" alt="F" /><b data-i18n="fightOffer">싸움 신청</b><i class="offer-t"><i id="offerBar"></i></i></div>
+    <div id="fightHud" class="fight-hud hidden">
+      <div class="fh t0"><span id="fn0"></span><i class="hp"><i class="tr" id="ftr0"></i><i id="fhp0"></i></i><i class="sta"><i id="fst0"></i></i></div>
+      <b id="fightT">15</b>
+      <div class="fh t1"><span id="fn1"></span><i class="hp"><i class="tr" id="ftr1"></i><i id="fhp1"></i></i><i class="sta"><i id="fst1"></i></i></div>
+    </div>
+    <div id="fightKeys" class="fight-keys hidden"><span><img class="key" src="/kit/key_d.png" alt="D" /><span data-i18n="fkPunch">펀치</span></span><span><img class="key" src="/kit/key_s.png" alt="S" /><span data-i18n="fkGuard">가드</span></span><span><img class="key" src="/kit/key_arrow_left.png" alt="" /><img class="key" src="/kit/key_arrow_right.png" alt="" /><span data-i18n="fkDodge">회피</span></span></div>
+    <div id="morale" class="morale"><span id="mo0" class="mor t0 hidden"></span><span id="mo1" class="mor t1 hidden"></span></div>
+    <div id="coachTip" class="coach-tip hidden"><b id="ctMain"></b><span id="ctSub"></span></div>
+    <div id="tactics" class="tactics hidden">
+      <button class="ghost" data-t="attack" data-i18n="tacAttack">공격</button><button class="ghost" data-t="balanced" data-i18n="tacBalanced">균형</button><button class="ghost" data-t="defend" data-i18n="tacDefend">수비</button>
+    </div>
+    <div id="stageBar" class="drill stage-bar hidden"><div class="dr-step" id="sbStep"></div><div class="sb-main"><b id="sbName"></b><span id="sbGoal"></span></div><ul class="sb-stars" id="sbStars"></ul></div>
+    <div id="drill" class="drill hidden"><div class="dr-step" id="drStep"></div><div class="dr-text" id="drText"></div><div class="dr-keys" id="drKeys"></div><div class="dr-prog" id="drProg"></div><button id="drSkip" class="ghost small dr-skip" data-i18n="rvSkip">건너뛰기</button></div>
+    <button id="bQuit" class="ghost small" data-i18n="leave">나가기</button>
+    <div id="quitAsk" class="quit-ask hidden"><div class="sheet"><h2 data-i18n="quitAsk">경기를 나갈까요?</h2><p id="quitText"></p><button id="bQuitNo" class="primary" data-i18n="quitStay">계속하기</button><button id="bQuitYes" class="danger" data-i18n="leave">나가기</button></div></div>
+  </div>
+
+  <!-- match intro: both lineups -->
+  <div id="intro" class="intro hidden">
+    <div class="in-side in-0" id="in0"></div>
+    <div class="in-vs">VS</div>
+    <div class="in-side in-1" id="in1"></div>
+  </div>
+
+  <!-- result -->
+  <section id="result" class="screen result hidden">
+    <div class="rs-left">
+      <div class="rs-tag" data-i18n="final">경기 종료</div>
+      <h2 id="resTitle"></h2>
+      <div id="resStats"></div>
+      <div class="rs-rank" id="resRank"></div>
+    </div>
+    <div class="rs-bug" id="resBug"></div>
+    <div class="rs-mvp" id="resMvp"></div>
+    <div id="resScore" class="hidden"></div>
+    <div class="boards"><div class="rs-btns"><button id="bAgain" class="primary" data-i18n="again">다시 하기</button><button id="bLobby" class="ghost" data-i18n="lobby">로비로</button><button id="bAdResult" class="hidden"></button></div></div>
+  </section>
+
+  <div id="reveal" class="reveal hidden"><div class="rv-flash"></div><div class="rv-grade" id="rvGrade"></div><div class="rv-card" id="rvCard"></div><div class="rv-all" id="rvAll"></div><button id="rvSkip" class="rv-skip" data-i18n="rvSkip">건너뛰기</button></div>
+  <div id="wipe" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div id="toast"></div>
+  <div id="rotate" class="rotate" aria-live="polite"><i></i><b data-i18n="rotateTitle">가로로 돌려 주세요</b><span data-i18n="rotateSub">FACE-OFF!는 가로 화면에서 플레이해요</span></div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

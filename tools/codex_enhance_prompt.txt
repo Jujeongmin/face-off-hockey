@@ -1,0 +1,17 @@
+Use your built-in image generation tool ($imagegen). Generate THREE separate images and copy each final image into the current working directory under these exact names: enh_bronze.png, enh_silver.png, enh_gold.png. Then stop. Do not write any code.
+
+What it is: the upgrade badge of an original ice hockey game called FACE-OFF!. A player card that has been upgraded far enough earns a bronze badge, then silver, then gold. The badge is pinned to the top right corner of the player card and next to the player's profile picture, so it is shown small, about 28 to 40 pixels wide, and must read clearly at that size.
+
+The badge: a solid metal shield, slightly taller than wide, with a pointed bottom. On its face, two stacked raised chevrons pointing up, and a small five-pointed star above them. A thick bevelled rim around the shield. Seen straight from the front. One single object, centred, filling the image with a small margin.
+1. enh_bronze.png, square 1024x1024: warm bronze, satin finish, modest.
+2. enh_silver.png, square 1024x1024: bright polished silver with cold blue reflections, the same shape.
+3. enh_gold.png, square 1024x1024: rich polished gold, the same shape, with a ruby set in the star centre and a faint warm glow on the rim, clearly the most valuable.
+All three must be the same shape, size, angle and lighting; only the metal and the ruby differ.
+
+Background: fully transparent outside the badge. If transparency is not possible, use a perfectly flat #00FF00 background outside the badge instead, with no green spill or shadow on it.
+
+Style: matches premium collectible sports cards made of real materials. Physically believable metal, sharp bevels, crisp highlights, studio lighting from the upper left. Crisp and restrained, game UI quality.
+
+Strictly avoid: any text, letters, numbers, logos, watermarks, people, faces, emoji-like icons, cartoon outlines, glowing magic swirls, random scribbled ornament, smudgy painterly texture, melted details, and the trade dress of any existing game or brand.
+
+When finished, reply with just the three file names.

@@ -1,0 +1,19 @@
+Use your built-in image generation tool ($imagegen). Generate SIX separate images and copy each final image into the current working directory under these exact names: star_on.png, star_off.png, padlock.png, coin.png, arrow.png, phone.png. Then stop. Do not write any code.
+
+What it is: small interface icons for an original ice hockey game called FACE-OFF!. They sit next to text on dark navy panels and are shown very small, 12 to 40 pixels wide, so each must be one bold, simple, solid object with a clear silhouette that still reads at 12 pixels. They must look like one matching set.
+
+The icons, each square 1024x1024, one object centred, filling the image with a small margin, seen straight from the front:
+1. star_on.png: an earned rating star. A plump five-pointed star of polished gold with a soft bevel, a bright highlight on the upper left points and a thin darker gold rim.
+2. star_off.png: the same star, not earned yet: the identical shape in dark slate blue-grey metal, matte, a faint bevel, no shine. Same size and position as star_on so they swap exactly.
+3. padlock.png: a locked padlock, steel grey with a rounded shackle and a small keyhole, sturdy and simple.
+4. coin.png: a gold game coin seen face on, thick rim, a faint emboss of a hockey puck in the centre.
+5. arrow.png: a bold chevron arrow pointing right, polished gold, two stacked chevrons (a double chevron, like a level-up arrow) with a soft bevel.
+6. phone.png: a smartphone seen from the front, portrait, rounded corners, a dark screen with a faint ice-blue glow, a thin light grey frame. Plain, no notch details, no buttons visible, no apps.
+
+Background: fully transparent outside the object. If transparency is not possible, use a perfectly flat #00FF00 background outside the object instead, with no green spill or shadow on it.
+
+Style: matches premium collectible sports cards made of real materials. Physically believable metal, crisp bevels, studio lighting from the upper left. Crisp and restrained, game UI quality.
+
+Strictly avoid: any text, letters, numbers, logos, watermarks, people, faces, emoji look, cartoon outlines, glowing magic swirls, sparkles, smudgy painterly texture, melted details, and the trade dress of any existing game or brand.
+
+When finished, reply with just the six file names.
